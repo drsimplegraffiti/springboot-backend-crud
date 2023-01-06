@@ -3,7 +3,6 @@ package com.abcode.springbootbackend.service;
 import com.abcode.springbootbackend.model.Employee;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface EmployeeService {
     Employee saveEmployee(Employee employee);
@@ -15,4 +14,7 @@ public interface EmployeeService {
     Employee updateEmployeeById(Employee employee, Long id);
 
     void deleteEmployeeById(Long id);
+
+    List<Employee> getByEmployeeName(String firstName, String lastName);
+
 }

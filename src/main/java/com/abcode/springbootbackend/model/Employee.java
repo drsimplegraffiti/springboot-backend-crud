@@ -1,13 +1,13 @@
 package com.abcode.springbootbackend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 import javax.persistence.*;
 
 //Lombok Annotations @Data, @AllArgsConstructor, @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -22,6 +22,7 @@ public class Employee {
     @Column(name = "first_name", nullable = false, length = 50)
     private String firstName;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // this will not be returned in the response body
     @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
 

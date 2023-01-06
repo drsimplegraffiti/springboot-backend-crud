@@ -1,4 +1,6 @@
+
 package com.abcode.springbootbackend.controller;
+
 
 import com.abcode.springbootbackend.model.Employee;
 import com.abcode.springbootbackend.repository.EmployeeRepository;
@@ -59,4 +61,20 @@ public class EmployeeController {
         employeeService.deleteEmployeeById(id);
         return new ResponseEntity<String>("Employee deleted successfully", HttpStatus.OK);
     }
+
+    // get employee by first name and last name
+    @GetMapping("/name")
+    public ResponseEntity<List<Employee>> getByEmployeeName(
+           //make request parameters optional
+            @RequestParam(value = "firstName", required = false) String firstName,
+            @RequestParam(value = "lastName", required = false) String lastName
+    ){
+        if (firstName == null && lastName == null) {
+            return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<List<Employee>>(employeeService.getByEmployeeName(firstName, lastName), HttpStatus.OK);
+        }
+    }
+
+
 }
